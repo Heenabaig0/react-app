@@ -1,6 +1,9 @@
 import { createSlice, nanoid, type PayloadAction } from "@reduxjs/toolkit";
 
-export type Todo = { id: string; text: string };
+export type Todo = {
+  id: string;
+  text: string;
+};
 
 type TodosState = {
   items: Todo[];
@@ -16,21 +19,18 @@ const todosSlice = createSlice({
   reducers: {
     addTodo: {
       reducer(state, action: PayloadAction<Todo>) {
-        if (!action.payload.text) return;
         state.items.push(action.payload);
       },
       prepare(text: string) {
-        const trimmed = text.trim();
-        return {
-          payload: { id: nanoid(), text: trimmed },
-        };
+        return { payload: { id: nanoid(), text: text.trim() } };
       },
     },
-    editTodo(state, action: PayloadAction<{ id: string; text: string }>) {
-      const next = action.payload.text.trim();
-      if (!next) return;
-      const item = state.items.find((t) => t.id === action.payload.id);
-      if (item) item.text = next;
+    updateTodo(
+      state,
+      action: PayloadAction<{ id: string; text: string }>
+    ) {
+      const todo = state.items.find((t) => t.id === action.payload.id);
+      if (todo) todo.text = action.payload.text.trim();
     },
     deleteTodo(state, action: PayloadAction<string>) {
       state.items = state.items.filter((t) => t.id !== action.payload);
@@ -38,5 +38,5 @@ const todosSlice = createSlice({
   },
 });
 
-export const { addTodo, editTodo, deleteTodo } = todosSlice.actions;
-export default todosSlice.reducer;
+export const { addTodo, updateTodo, deleteTodo } = todosSlice.actions;
+export const todosReducer = todosSlice.reducer;

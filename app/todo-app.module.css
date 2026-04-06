@@ -1,0 +1,141 @@
+.wrap {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 2rem 1.25rem 3rem;
+}
+
+.title {
+  margin: 0 0 0.25rem;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 0 0 1.5rem;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+}
+
+.input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+.btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnPrimary {
+  composes: btn;
+  background: var(--accent);
+  color: #fff;
+}
+
+.btnPrimary:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.btnSecondary {
+  composes: btn;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btnSecondary:hover:not(:disabled) {
+  background: var(--surface-hover);
+}
+
+.btnDanger {
+  composes: btn;
+  background: transparent;
+  color: var(--danger);
+  border: 1px solid transparent;
+}
+
+.btnDanger:hover:not(:disabled) {
+  background: var(--danger-bg);
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.text {
+  flex: 1;
+  min-width: 0;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.actions {
+  display: flex;
+  flex-shrink: 0;
+  gap: 0.35rem;
+}
+
+.editRow {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.editRow .input {
+  margin: 0;
+}
+
+.empty {
+  margin: 0;
+  padding: 2rem 1rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  border: 1px dashed var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+}
