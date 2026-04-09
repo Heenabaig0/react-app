@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import AppShell from "./AppShell";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
-  title: "To-do list",
-  description: "Simple to-dos with Redux Toolkit",
+  title: "My app",
+  description: "Drawer navigation and tools",
 };
 
 export default function RootLayout({
@@ -15,7 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <StoreProvider>{children}</StoreProvider>
+        <StoreProvider>
+          <AppShell>{children}</AppShell>
+        </StoreProvider>
       </body>
     </html>
   );
