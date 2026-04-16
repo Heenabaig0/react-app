@@ -1,7 +1,32 @@
+.page {
+  min-height: calc(100vh - 3.8rem);
+  margin: 0;
+  padding: 1.5rem 1rem 2.5rem;
+  background: linear-gradient(180deg, #f6f0df 0%, #efe4cc 100%);
+}
+
 .wrap {
-  max-width: 32rem;
+  position: relative;
+  max-width: 36rem;
   margin: 0 auto;
-  padding: 2rem 1.25rem 3rem;
+  padding: 2.5rem 1.5rem 3rem;
+  border: 1px solid #dbcfae;
+  border-radius: 16px;
+  background: rgb(255 250 239 / 78%);
+  text-align: center;
+  color: #4a3a1f;
+}
+
+.dateTime {
+  position: absolute;
+  top: 0.85rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  font-size: 0.78rem;
+  color: #6e5d3d;
+  line-height: 1.35;
 }
 
 .title {
@@ -14,13 +39,14 @@
 .subtitle {
   margin: 0 0 1.5rem;
   font-size: 0.95rem;
-  color: var(--muted);
+  color: #6e5d3d;
 }
 
 .form {
   display: flex;
   gap: 0.5rem;
   margin-bottom: 1.5rem;
+  justify-content: center;
 }
 
 .input {
@@ -28,14 +54,14 @@
   min-width: 0;
   padding: 0.6rem 0.75rem;
   font-size: 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid #d5c7a4;
   border-radius: 6px;
-  background: var(--surface);
-  color: var(--text);
+  background: #fffaf0;
+  color: #4a3a1f;
 }
 
 .input:focus {
-  outline: 2px solid var(--accent);
+  outline: 2px solid #b29758;
   outline-offset: 1px;
 }
 
@@ -55,7 +81,7 @@
 
 .btnPrimary {
   composes: btn;
-  background: var(--accent);
+  background: #b19658;
   color: #fff;
 }
 
@@ -65,24 +91,24 @@
 
 .btnSecondary {
   composes: btn;
-  background: var(--surface-2);
-  color: var(--text);
-  border: 1px solid var(--border);
+  background: #f5ecd8;
+  color: #4a3a1f;
+  border: 1px solid #d5c7a4;
 }
 
 .btnSecondary:hover:not(:disabled) {
-  background: var(--surface-hover);
+  background: #efe2c4;
 }
 
 .btnDanger {
   composes: btn;
-  background: transparent;
-  color: var(--danger);
-  border: 1px solid transparent;
+  background: #f6e8d5;
+  color: #8b5732;
+  border: 1px solid #e5c5a2;
 }
 
 .btnDanger:hover:not(:disabled) {
-  background: var(--danger-bg);
+  background: #efd6b6;
 }
 
 .list {
@@ -97,10 +123,11 @@
 .item {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   padding: 0.75rem 1rem;
-  background: var(--surface);
-  border: 1px solid var(--border);
+  background: #fff8e8;
+  border: 1px solid #dccfae;
   border-radius: 8px;
 }
 
@@ -109,12 +136,14 @@
   min-width: 0;
   word-break: break-word;
   line-height: 1.4;
+  text-align: center;
 }
 
 .actions {
   display: flex;
   flex-shrink: 0;
   gap: 0.35rem;
+  justify-content: center;
 }
 
 .editRow {
@@ -123,6 +152,7 @@
   min-width: 0;
   gap: 0.5rem;
   align-items: center;
+  justify-content: center;
 }
 
 .editRow .input {
@@ -133,9 +163,9 @@
   margin: 0;
   padding: 2rem 1rem;
   text-align: center;
-  color: var(--muted);
+  color: #6e5d3d;
   font-size: 0.95rem;
-  border: 1px dashed var(--border);
+  border: 1px dashed #d8caab;
   border-radius: 8px;
-  background: var(--surface-2);
+  background: #fbf3df;
 }

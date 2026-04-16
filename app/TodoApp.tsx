@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { addTodo, deleteTodo, updateTodo } from "@/store/todosSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import styles from "./todo-app.module.css";
@@ -11,6 +11,12 @@ export default function TodoApp() {
   const [draft, setDraft] = useState("");
   const [editingId, setEditingId] = useState<string | null>(null);
   const [editText, setEditText] = useState("");
+  const [now, setNow] = useState(() => new Date());
+
+  useEffect(() => {
+    const timer = window.setInterval(() => setNow(new Date()), 1000);
+    return () => window.clearInterval(timer);
+  }, []);
 
   function handleAdd(e: FormEvent) {
     e.preventDefault();
@@ -40,81 +46,88 @@ export default function TodoApp() {
   }
 
   return (
-    <div className={styles.wrap}>
-      <h1 className={styles.title}>To-do list</h1>
-      <p className={styles.subtitle}>
-        Add tasks, edit them inline, or remove them. State lives in Redux Toolkit.
-      </p>
+    <div className={styles.page}>
+      <div className={styles.wrap}>
+        <div className={styles.dateTime}>
+          <span>{now.toLocaleDateString()}</span>
+          <span>{now.toLocaleTimeString()}</span>
+        </div>
 
-      <form className={styles.form} onSubmit={handleAdd}>
-        <input
-          className={styles.input}
-          type="text"
-          value={draft}
-          onChange={(e) => setDraft(e.target.value)}
-          placeholder="What needs doing?"
-          aria-label="New task"
-        />
-        <button className={styles.btnPrimary} type="submit" disabled={!draft.trim()}>
-          Add
-        </button>
-      </form>
+        <h1 className={styles.title}>To-do list</h1>
+        <p className={styles.subtitle}>
+          Add tasks, edit them inline, or remove them. State lives in Redux Toolkit.
+        </p>
 
-      {items.length === 0 ? (
-        <p className={styles.empty}>No tasks yet. Add one above.</p>
-      ) : (
-        <ul className={styles.list}>
-          {items.map((todo) => (
-            <li key={todo.id} className={styles.item}>
-              {editingId === todo.id ? (
-                <form className={styles.editRow} onSubmit={saveEdit}>
-                  <input
-                    className={styles.input}
-                    value={editText}
-                    onChange={(e) => setEditText(e.target.value)}
-                    aria-label="Edit task"
-                    autoFocus
-                  />
-                  <button
-                    className={styles.btnPrimary}
-                    type="submit"
-                    disabled={!editText.trim()}
-                  >
-                    Save
-                  </button>
-                  <button
-                    className={styles.btnSecondary}
-                    type="button"
-                    onClick={cancelEdit}
-                  >
-                    Cancel
-                  </button>
-                </form>
-              ) : (
-                <>
-                  <span className={styles.text}>{todo.text}</span>
-                  <div className={styles.actions}>
+        <form className={styles.form} onSubmit={handleAdd}>
+          <input
+            className={styles.input}
+            type="text"
+            value={draft}
+            onChange={(e) => setDraft(e.target.value)}
+            placeholder="What needs doing?"
+            aria-label="New task"
+          />
+          <button className={styles.btnPrimary} type="submit" disabled={!draft.trim()}>
+            Add
+          </button>
+        </form>
+
+        {items.length === 0 ? (
+          <p className={styles.empty}>No tasks yet. Add one above.</p>
+        ) : (
+          <ul className={styles.list}>
+            {items.map((todo) => (
+              <li key={todo.id} className={styles.item}>
+                {editingId === todo.id ? (
+                  <form className={styles.editRow} onSubmit={saveEdit}>
+                    <input
+                      className={styles.input}
+                      value={editText}
+                      onChange={(e) => setEditText(e.target.value)}
+                      aria-label="Edit task"
+                      autoFocus
+                    />
                     <button
-                      type="button"
+                      className={styles.btnPrimary}
+                      type="submit"
+                      disabled={!editText.trim()}
+                    >
+                      Save
+                    </button>
+                    <button
                       className={styles.btnSecondary}
-                      onClick={() => startEdit(todo.id, todo.text)}
-                    >
-                      Edit
-                    </button>
-                    <button
                       type="button"
-                      className={styles.btnDanger}
-                      onClick={() => dispatch(deleteTodo(todo.id))}
+                      onClick={cancelEdit}
                     >
-                      Delete
+                      Cancel
                     </button>
-                  </div>
-                </>
-              )}
-            </li>
-          ))}
-        </ul>
-      )}
+                  </form>
+                ) : (
+                  <>
+                    <span className={styles.text}>{todo.text}</span>
+                    <div className={styles.actions}>
+                      <button
+                        type="button"
+                        className={styles.btnSecondary}
+                        onClick={() => startEdit(todo.id, todo.text)}
+                      >
+                        Edit
+                      </button>
+                      <button
+                        type="button"
+                        className={styles.btnDanger}
+                        onClick={() => dispatch(deleteTodo(todo.id))}
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </>
+                )}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

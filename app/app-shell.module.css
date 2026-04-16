@@ -14,6 +14,11 @@
   flex-shrink: 0;
 }
 
+.topBarCompact {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
 .menuBtn {
   display: inline-flex;
   align-items: center;
@@ -50,6 +55,72 @@
   margin: 0;
   font-size: 1.05rem;
   font-weight: 600;
+}
+
+.topBarTools {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.clock {
+  font-size: 0.85rem;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+.dropdownWrap {
+  position: relative;
+}
+
+.controlsBtn {
+  height: 2.2rem;
+  padding: 0 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-2);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.controlsBtn:hover {
+  background: var(--surface-hover);
+}
+
+.controlsBtn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  z-index: 60;
+  min-width: 13rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 14%);
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.65rem;
+}
+
+.toggleLabel {
+  font-size: 0.88rem;
+  color: var(--text);
 }
 
 .main {
