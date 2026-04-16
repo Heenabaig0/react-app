@@ -9,4 +9,5 @@ export type NavLink = {
 
 export const navLinks: NavLink[] = [
   { href: "/", label: "To Do List" },
+  { href: "/shopping", label: "Shopping List" },
 ];
